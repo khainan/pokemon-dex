@@ -1,22 +1,67 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
+  width: 100%;
   min-height: 100vh;
+}
+body {
+  font-family: 'Signika', sans-serif;
+}
+.header {
+  height: 80px;
+  width: 100%;
+  background-color: #F5F5F5;
+  position: fixed;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #09d3ac;
+.header img {
+  width: 180px;
+  height: auto;
+}
+.filter-button-wrapper {
+  position: absolute;
+  top: 80px;
+  display: flex;
+  width: 100%;
+}
+.filter-button-wrapper button {
+  cursor: pointer;
+  height: 40px;
+  width: 20%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.header .pokeball-icon {
+  width: 40px;
+  position: absolute;
+  top: 40px;
+}
+.fire-color {
+  background: linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);
+  background-color: #fd7d24;
+  color: #fff;
+}
+.water-color {
+  background: linear-gradient(180deg, #4592c4 50%, #4592c4 50%);
+  background-color: #4592c4;
+  color: #fff;
+}
+.grass-color {
+  background: linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);
+  background-color: #9bcc50;
+  color: #212121;
+}
+.flying-color {
+  background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+  background-color: #3dc7ef;
+  color: #212121;
+}
+.electric-color {
+  background: linear-gradient(180deg, #eed535 50%, #eed535 50%);
+  background-color: #eed535;
+  color: #212121;
 }
