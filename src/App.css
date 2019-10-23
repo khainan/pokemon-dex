@@ -1,6 +1,7 @@
 .main-body {
-  width: 100%;
+  width: 80%;
   min-height: 100vh;
+  margin: 0 auto;
   margin-top: 80px;
 }
 body {
