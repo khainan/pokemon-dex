@@ -1,6 +1,7 @@
-.App {
+.main-body {
   width: 100%;
   min-height: 100vh;
+  margin-top: 80px;
 }
 body {
   font-family: 'Signika', sans-serif;
@@ -10,17 +11,17 @@ body {
   width: 100%;
   background-color: #F5F5F5;
   position: fixed;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
 .header img {
   width: 180px;
   height: auto;
 }
 .filter-button-wrapper {
-  position: absolute;
-  top: 80px;
   display: flex;
   width: 100%;
 }
@@ -35,7 +36,7 @@ body {
   font-weight: 600;
   text-transform: capitalize;
 }
-.header .pokeball-icon {
+.pokeball-icon {
   width: 40px;
   position: absolute;
   top: 40px;
