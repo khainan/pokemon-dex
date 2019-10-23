@@ -3,6 +3,7 @@
   min-height: 100vh;
   margin: 0 auto;
   margin-top: 80px;
+  padding: 36px 0;
 }
 body {
   font-family: 'Signika', sans-serif;
@@ -25,6 +26,23 @@ body {
 .filter-button-wrapper {
   display: flex;
   width: 100%;
+}
+.card {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border-radius: 4px;
+}
+.card img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+.wrapper-list-pokemon {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 .filter-button-wrapper button {
   cursor: pointer;
