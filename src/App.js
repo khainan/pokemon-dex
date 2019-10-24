@@ -37,19 +37,19 @@ function App() {
         convertedId = id > 99 ? id : id > 9 ? '0'+id : '00' + id
         imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${convertedId}.png`
         res.data.types.map(val => type.push(val.type.name))
+        const newObject = {
+          name: name,
+          url: url,
+          image: imageUrl,
+          id:id,
+          type:type
+        }
+
+        pokemon.push(newObject)
+        let newArray = [...pokemon]
+        newArray = newArray.sort((a, b) => {return a.id - b.id})
+        setPokemon(newArray)
       })
-    const newObject = {
-      name: name,
-      url: url,
-      image: imageUrl,
-      id:id,
-      type:type
-    }
-
-    pokemon.push(newObject)
-    let newArray = [...pokemon]
-
-    setPokemon(newArray)
   }
 
   useEffect(() => {
