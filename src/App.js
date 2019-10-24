@@ -11,12 +11,15 @@ function App() {
   const [listType, setListType] = useState([])
   const [pokemon, setPokemon] = useState([])
   const [loading, setLoading] = useState(true)
+  const [nextData, setNextData] = useState("")
 
   const getDataPokemon = async (url) => {
-    setLoading(true)
     await axios.get(url)
       .then(res => {
         let data = res.data.results ? res.data.results : res.data.pokemon
+        let nextUrl = res.data.next ? res.data.next : ""
+
+        setNextData(nextUrl)
         data.map(data => setDataPokemon(data.pokemon ? data.pokemon.name : data.name, data.url))
     })
   }
@@ -75,7 +78,12 @@ function App() {
     getDataPokemon(url)
   }
 
-  console.log(pokemon)
+  const getDataOnScroll = (scrollHeight, clientHeight, scrollTop) => {
+    let currentScroll = scrollHeight - clientHeight
+    if((currentScroll === scrollTop) && nextData){
+      getDataPokemon(nextData)
+    }
+  }
 
   useEffect(() => {
     getDataPokemon("https://pokeapi.co/api/v2/pokemon")
@@ -83,21 +91,21 @@ function App() {
   },[])
 
   return (
-    <div className="App">
-      <div className="header">
-        <img src={LogoPokemon} />
-      </div>
-      <div className="main-body">
-        <ScrollUpButton
+    <div className="App" onScroll={(e) => getDataOnScroll(e.currentTarget.scrollHeight, e.currentTarget.clientHeight, e.currentTarget.scrollTop)}>
+      <ScrollUpButton
           StopPosition={0}
           ShowAtPosition={150}
           EasingType='easeOutCubic'
           AnimationDuration={500}
-          ContainerClassName='ScrollUpButton__Container'
+          ContainerClassName='App'
           TransitionClassName='ScrollUpButton__Toggled'
           style={{zIndex:"10"}}
           ToggledStyle={{}}
         />
+      <div className="header">
+        <img src={LogoPokemon} />
+      </div>
+      <div className="main-body">
         <p style={{margin:"0"}}>Filter by:</p>
         <div className="filter-button-wrapper">
           {
@@ -106,7 +114,7 @@ function App() {
                 key={index}
                 style={{cursor:"pointer"}}
                 className={`attribute ${val.name}-color`}
-                onClick={() => filterPokemonByType(val.url)}
+                onClick={() => { filterPokemonByType(val.url); setLoading(true) }}
               >
               {val.name}
               </div>
