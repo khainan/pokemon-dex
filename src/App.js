@@ -7,22 +7,22 @@ import Loader from 'react-loading';
 
 function App() {
 
-  const [activeFilter, setActiveFilter] = useState("fire")
   const [listType, setListType] = useState([])
   const [pokemon, setPokemon] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const getDataPokemon = async () => {
-    await axios.get("https://pokeapi.co/api/v2/pokemon")
+  const getDataPokemon = async (url) => {
+    setLoading(true)
+    await axios.get(url)
       .then(res => {
-        res.data.results.map(data => setDataPokemon(data.name, data.url))
+        let data = res.data.results ? res.data.results : res.data.pokemon
+        data.map(data => setDataPokemon(data.pokemon ? data.pokemon.name : data.name, data.url))
     })
   }
 
   const getDataType = async () => {
     await axios.get("https://pokeapi.co/api/v2/type")
       .then(res => {
-        console.log(res.data)
         setListType(res.data.results)
     })
   }
@@ -49,15 +49,21 @@ function App() {
         }
 
         pokemon.push(newObject)
-        let newArray = [...pokemon]
-        newArray = newArray.sort((a, b) => {return a.id - b.id})
-        setPokemon(newArray)
+        let sortedArray = [...pokemon]
+        sortedArray = sortedArray.sort((a, b) => {return a.id - b.id})
+        setPokemon(sortedArray)
         setLoading(false)
       })
   }
 
+  const filterPokemonByType = (url) => {
+    let clearArray = pokemon.splice(0, pokemon.length)
+    setPokemon(clearArray)
+    getDataPokemon(url)
+  }
+
   useEffect(() => {
-    getDataPokemon()
+    getDataPokemon("https://pokeapi.co/api/v2/pokemon")
     getDataType()
   },[])
 
@@ -65,21 +71,18 @@ function App() {
     <div className="App">
       <Header />
       <div className="main-body">
+        <p style={{margin:"0"}}>Filter by:</p>
         <div className="filter-button-wrapper">
-          {/* <button className="button-filter fire-color">
-              Fire
-              <img className="pokeball-icon" src={PokeBallIcon} />
-          </button>
-          <button className="button-filter water-color">water</button>
-          <button className="button-filter grass-color">grass</button>
-          <button className="button-filter flying-color">flying</button>
-          <button className="button-filter electric-color">electric</button> */}
-
+          {
+            listType.map((val, index) =>
+              <div key={index} style={{cursor:"pointer"}} className={`attribute ${val.name}-color`} onClick={() => filterPokemonByType(val.url)}>{val.name}</div>
+            )
+          }
         </div>
         <div className="wrapper-list-pokemon">
           { !loading ?
-            ( pokemon.map(data =>
-              <div className="card">
+            ( pokemon.map((data, index) =>
+              <div key={index} className="card">
                 <div className="pokemon-id-wrapper">
                   <img src={PokeBallIcon}/>
                   <p className="pokemon-id">{data.convertedId}</p>
@@ -88,7 +91,7 @@ function App() {
                 <p className="title-card">{data.name}</p>
                 <div className="attribute-wrapper">
                 {
-                  data.type.map(type => <div className={`attribute ${type}-color`}>{type}</div>)
+                  data.type.map((type, index)=> <div key={index} className={`attribute ${type}-color`}>{type}</div>)
                 }
                 </div>
               </div>

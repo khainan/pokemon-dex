@@ -27,6 +27,9 @@ body {
 .filter-button-wrapper {
   display: flex;
   width: 100%;
+  margin-bottom: 24px;
+  overflow-x: scroll;
+  height: 40px;
 }
 .card {
   cursor: pointer;
@@ -52,6 +55,8 @@ body {
   height: 200px;
   object-fit: contain;
   background-color: #F5F5F5;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 .title-card {
   margin: 0;
@@ -82,11 +87,16 @@ body {
   top: 40px;
 }
 .attribute {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 70px;
+  height: 24px;
+  min-width: 70px;
   text-align: center;
   margin: 4px;
   border-radius: 4px;
+  text-transform: capitalize;
 }
 .fire-color {
   background: linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);
@@ -168,6 +178,16 @@ body {
   background-color: #707070;
   color:#fff
 }
+.unknown-color {
+  background: linear-gradient(180deg, #707070 50%, #707070 50%);
+  background-color: #707070;
+  color:#fff
+}
+.shadow-color {
+  background: linear-gradient(180deg, #707070 50%, #707070 50%);
+  background-color: #707070;
+  color:#fff
+}
 .dragon-color {
   background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
   background-color: #53a4cf;
@@ -179,6 +199,7 @@ body {
   color: #fff;
 }
 .attribute-wrapper {
+  display: flex;
   position: absolute;
   bottom: -15%;
   left: 0;
@@ -190,7 +211,7 @@ body {
   right: 6px;
   top: 6px;
   background: white;
-  border: 1px solid;
+  border: 1px solid gray;
   border-radius: 50px;
 }
 .pokemon-id-wrapper img {
