@@ -80,7 +80,12 @@ function App() {
             ( pokemon.map(data =>
               <div className="card">
                 <img src={data.image} />
-                { data.type.map(type => <div className={`attribute ${type}-color`}>{type}</div>) }
+                <p className="title-card">{data.name}</p>
+                <div className="attribute-wrapper">
+                {
+                  data.type.map(type => <div className={`attribute ${type}-color`}>{type}</div>)
+                }
+                </div>
               </div>
             )
           )

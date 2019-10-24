@@ -36,7 +36,8 @@ body {
   border: 1px solid lightgray;
   margin: 6px;
   transition: 0.3s;
-  background: #F5F5F5;
+  position: relative;
+  margin-bottom: 60px;
 }
 .card:hover {
   border-color: #3D7DCA;
@@ -49,6 +50,13 @@ body {
   width: 200px;
   height: 200px;
   object-fit: contain;
+  background-color: #F5F5F5;
+}
+.title-card {
+  margin: 0;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 5px;
 }
 .wrapper-list-pokemon {
   display: flex;
@@ -168,4 +176,9 @@ body {
   background: linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
   background-color: #fdb9e9;
   color: #fff;
+}
+.attribute-wrapper {
+  position: absolute;
+  bottom: -15%;
+  left: 0;
 }
