@@ -8,6 +8,7 @@
 }
 body {
   font-family: 'Signika', sans-serif;
+  color: #232222
 }
 .header {
   height: 80px;
@@ -54,7 +55,6 @@ body {
 .card img {
   width: 300px;
   height: 300px;
-  object-fit: contain;
   background-color: #F5F5F5;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -228,17 +228,55 @@ body {
   position: absolute;
   top: 0px;
   padding: 18px;
-  width: 88%;
+  width: 0%;
   height: 300px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  transition: 0.5s;
 }
 .wrapper-stats p {
-  margin: 0;
-  padding-left: 10px;
+  text-transform: capitalize;
+  font-size: 14px;
+  padding: 6px;
 }
-.wrapper-stats h4 {
+.title-stats {
   margin: 0;
-  color: #CC0000;
+  color: #858585;
 }
 .wrapper-stats {
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 6px;
+}
+.p-stats {
+  margin: 2px 4px;
+  padding: 2px 4px;
+  border-radius: 50px;
+}
+.speed {
+  background: pink;
+}
+.special-defense {
+  background: lightgreen;
+}
+.special-attack {
+  background: lightblue;
+}
+.attack {
+  background: orange;
+}
+.defense {
+  background: yellow;
+}
+.hp {
+  background: orangered;
+}
+.ability {
+  background: mediumpurple;
+  color: white;
+}
+.moves {
+  background: #cc0000;
+  color: #fff;
 }

@@ -14,17 +14,23 @@ function Card(props) {
       </div>
       <img src={props.data.image} style={ seeDetail ? {width:"0"} : {}} />
       { seeDetail &&
-          <div className="detail-pokemon">
+          <div className="detail-pokemon" style={ seeDetail ? {width:"88%"} : {}}>
+            <h4 className="title-stats">Stats:</h4>
             <div className="wrapper-stats">
-              <h4>Stats:</h4>
               {
-                props.data.stats.map(stats => <p>{stats.stat}: {stats.value}</p>)
+                props.data.stats.map(stats => <p className={`p-stats ${stats.stat}`}>{stats.stat} {stats.value}</p>)
               }
             </div>
+            <h4 className="title-stats">Abilities:</h4>
             <div className="wrapper-stats">
-              <h4>Abilities:</h4>
               {
-                props.data.abilities.map(ability => <p>{ability}</p>)
+                props.data.abilities.map(ability => <p className="p-stats ability">{ability}</p>)
+              }
+            </div>
+            <h4 className="title-stats">Moves:</h4>
+            <div className="wrapper-stats">
+              {
+                props.data.moves.slice(0, 4).map(moves => <p className="p-stats moves">{moves}</p>)
               }
             </div>
           </div>
