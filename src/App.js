@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Header from './components/Header';
 import PokeBallIcon from './images/poke-ball-icon.png';
+import {CircleArrow as ScrollUpButton} from 'react-scroll-up-button';
 import Loader from 'react-loading';
 
 function App() {
@@ -71,6 +72,16 @@ function App() {
     <div className="App">
       <Header />
       <div className="main-body">
+        <ScrollUpButton
+          StopPosition={0}
+          ShowAtPosition={150}
+          EasingType='easeOutCubic'
+          AnimationDuration={500}
+          ContainerClassName='ScrollUpButton__Container'
+          TransitionClassName='ScrollUpButton__Toggled'
+          style={{zIndex:"10"}}
+          ToggledStyle={{}}
+        />
         <p style={{margin:"0"}}>Filter by:</p>
         <div className="filter-button-wrapper">
           {
