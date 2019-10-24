@@ -3,12 +3,14 @@ import axios from 'axios';
 import './App.css';
 import Header from './components/Header';
 import PokeBallIcon from './images/poke-ball-icon.png';
+import Loader from 'react-loading';
 
 function App() {
 
   const [activeFilter, setActiveFilter] = useState("fire")
   const [listType, setListType] = useState([])
   const [pokemon, setPokemon] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const getDataPokemon = async () => {
     await axios.get("https://pokeapi.co/api/v2/pokemon")
@@ -41,14 +43,15 @@ function App() {
           name: name,
           url: url,
           image: imageUrl,
-          id:id,
-          type:type
+          id: id,
+          type: type
         }
 
         pokemon.push(newObject)
         let newArray = [...pokemon]
         newArray = newArray.sort((a, b) => {return a.id - b.id})
         setPokemon(newArray)
+        setLoading(false)
       })
   }
 
@@ -56,8 +59,6 @@ function App() {
     getDataPokemon()
     getDataType()
   },[])
-
-  console.log(pokemon)
 
   return (
     <div className="App">
@@ -75,11 +76,22 @@ function App() {
 
         </div>
         <div className="wrapper-list-pokemon">
-          { pokemon && pokemon.map(data =>
-            <div className="card">{data.name}
-              <img src={data.image} />
-            </div>
-          )}
+          { !loading ?
+            ( pokemon.map(data =>
+              <div className="card">
+                <img src={data.image} />
+                { data.type.map(type => <div className={`attribute ${type}-color`}>{type}</div>) }
+              </div>
+            )
+          )
+          :
+          <Loader
+            type={"bars"}
+            color={"#CC0000"}
+            height={"50px"}
+            width={"50px"}
+          />
+          }
         </div>
       </div>
     </div>

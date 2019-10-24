@@ -28,10 +28,22 @@ body {
   width: 100%;
 }
 .card {
+  cursor: pointer;
   display: inline-block;
   width: 200px;
-  height: 200px;
+  max-width: 200px;
   border-radius: 4px;
+  border: 1px solid lightgray;
+  margin: 6px;
+  transition: 0.3s;
+  background: #F5F5F5;
+}
+.card:hover {
+  border-color: #3D7DCA;
+  transition: 0.3s;
+  -webkit-box-shadow: 3px 6px 24px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 6px 24px -6px rgba(0,0,0,0.75);
+  box-shadow: 3px 6px 24px -6px rgba(0,0,0,0.75);
 }
 .card img {
   width: 200px;
@@ -60,6 +72,13 @@ body {
   position: absolute;
   top: 40px;
 }
+.attribute {
+  display: inline-block;
+  width: 70px;
+  text-align: center;
+  margin: 4px;
+  border-radius: 4px;
+}
 .fire-color {
   background: linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);
   background-color: #fd7d24;
@@ -83,5 +102,70 @@ body {
 .electric-color {
   background: linear-gradient(180deg, #eed535 50%, #eed535 50%);
   background-color: #eed535;
+  color: #fff;
+}
+.normal-color {
+  background: linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);
+  background-color: #a4acaf;
   color: #212121;
+}
+.fighting-color {
+  background: linear-gradient(180deg, #bb5544 50%, #bb5544 50%);
+  background-color: #bb5544;
+  color:#fff;
+}
+.poison-color {
+  background: linear-gradient(180deg, #a59 50%, #a59 50%);
+  background-color: #a59;
+  color: #fff;
+}
+.ground-color {
+  background: linear-gradient(180deg, #db5 50%, #db5 50%);
+  background-color: #db5;
+  color: #fff;
+}
+.rock-color {
+  background: linear-gradient(180deg, #ba6 50%, #ba6 50%);
+  background-color: #ba6;
+  color: #fff;
+}
+.psychic-color {
+  background: linear-gradient(180deg, #f59 50%, #f59 50%);
+  background-color: #f59;
+  color: #fff;
+}
+.bug-color {
+  background: linear-gradient(180deg, #ab2 50%, #ab2 50%);
+  background-color: #ab2;
+  color: #fff;
+}
+.ghost-color {
+  background: linear-gradient(180deg, #7b62a3 50%, #7b62a3 50%);
+  background-color: #7b62a3;
+  color: #fff;
+}
+.steel-color {
+  background: linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
+  background-color: #9eb7b8;
+  color: #212121;
+}
+.ice-color {
+  background: linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
+  background-color: #51c4e7;
+  color: #fff;
+}
+.dark-color {
+  background: linear-gradient(180deg, #707070 50%, #707070 50%);
+  background-color: #707070;
+  color:#fff
+}
+.dragon-color {
+  background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+  background-color: #53a4cf;
+  color: #fff;
+}
+.fairy-color {
+  background: linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
+  background-color: #fdb9e9;
+  color: #fff;
 }
