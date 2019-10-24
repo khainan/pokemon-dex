@@ -44,7 +44,8 @@ function App() {
           url: url,
           image: imageUrl,
           id: id,
-          type: type
+          type: type,
+          convertedId: convertedId
         }
 
         pokemon.push(newObject)
@@ -79,6 +80,10 @@ function App() {
           { !loading ?
             ( pokemon.map(data =>
               <div className="card">
+                <div className="pokemon-id-wrapper">
+                  <img src={PokeBallIcon}/>
+                  <p className="pokemon-id">{data.convertedId}</p>
+                </div>
                 <img src={data.image} />
                 <p className="title-card">{data.name}</p>
                 <div className="attribute-wrapper">

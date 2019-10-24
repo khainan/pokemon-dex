@@ -4,6 +4,7 @@
   margin: 0 auto;
   margin-top: 80px;
   padding: 36px 0;
+  background: #fff;
 }
 body {
   font-family: 'Signika', sans-serif;
@@ -181,4 +182,22 @@ body {
   position: absolute;
   bottom: -15%;
   left: 0;
+}
+.pokemon-id-wrapper {
+  position: absolute;
+  padding: 2px;
+  display: flex;
+  right: 6px;
+  top: 6px;
+  background: white;
+  border: 1px solid;
+  border-radius: 50px;
+}
+.pokemon-id-wrapper img {
+  width: 22px;
+  height: 22px;
+  background: none;
+}
+.pokemon-id {
+  margin: 2px;
 }
