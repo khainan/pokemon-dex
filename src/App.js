@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import LogoPokemon from './images/logo-pokemon.png';
 import axios from 'axios';
 import './App.css';
-import Header from './components/Header';
-import PokeBallIcon from './images/poke-ball-icon.png';
+import Card from './components/Card';
 import {CircleArrow as ScrollUpButton} from 'react-scroll-up-button';
 import Loader from 'react-loading';
 
@@ -70,7 +70,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <div className="header">
+        <img src={LogoPokemon} />
+      </div>
       <div className="main-body">
         <ScrollUpButton
           StopPosition={0}
@@ -86,27 +88,23 @@ function App() {
         <div className="filter-button-wrapper">
           {
             listType.map((val, index) =>
-              <div key={index} style={{cursor:"pointer"}} className={`attribute ${val.name}-color`} onClick={() => filterPokemonByType(val.url)}>{val.name}</div>
+              <div
+                key={index}
+                style={{cursor:"pointer"}}
+                className={`attribute ${val.name}-color`}
+                onClick={() => filterPokemonByType(val.url)}>
+                {val.name}
+              </div>
             )
           }
         </div>
         <div className="wrapper-list-pokemon">
           { !loading ?
-            ( pokemon.map((data, index) =>
-              <div key={index} className="card">
-                <div className="pokemon-id-wrapper">
-                  <img src={PokeBallIcon}/>
-                  <p className="pokemon-id">{data.convertedId}</p>
-                </div>
-                <img src={data.image} />
-                <p className="title-card">{data.name}</p>
-                <div className="attribute-wrapper">
-                {
-                  data.type.map((type, index)=> <div key={index} className={`attribute ${type}-color`}>{type}</div>)
-                }
-                </div>
-              </div>
-            )
+              pokemon.map((data, index) =>
+              <Card
+                data={data}
+                index={index}
+              />
           )
           :
           <Loader
