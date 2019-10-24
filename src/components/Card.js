@@ -27,15 +27,10 @@ function Card(props) {
                 props.data.abilities.map(ability => <p className="p-stats ability">{ability}</p>)
               }
             </div>
-            <h4 className="title-stats">Moves:</h4>
-            <div className="wrapper-stats">
-              {
-                props.data.moves.slice(0, 4).map(moves => <p className="p-stats moves">{moves}</p>)
-              }
-            </div>
+
           </div>
       }
-      <p className="title-card">{props.data.name} <span className="see-detail">></span></p>
+      <p className="title-card">{props.data.name} ></p>
       <div className="attribute-wrapper">
       {
         props.data.type.map((type, index)=> <div key={index} className={`attribute ${type}-color`}>{type}</div>)
