@@ -33,20 +33,32 @@ function App() {
     let imageUrl
     let type = []
     let convertedId
+    let abilities = []
+    let moves = []
+    let stats = []
 
     await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
       .then(res => {
         id = res.data.id
         convertedId = id > 99 ? id : id > 9 ? '0'+id : '00' + id
         imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${convertedId}.png`
+
         res.data.types.map(val => type.push(val.type.name))
+        res.data.abilities.map(val => abilities.push(val.ability.name))
+        res.data.moves.map(val => moves.push(val.move.name))
+        res.data.stats.map(val => stats.push({stat:val.stat.name, value: val.base_stat}))
+
+
         const newObject = {
           name: name,
           url: url,
           image: imageUrl,
           id: id,
           type: type,
-          convertedId: convertedId
+          convertedId: convertedId,
+          moves: moves,
+          abilities: abilities,
+          stats: stats
         }
 
         pokemon.push(newObject)
@@ -62,6 +74,8 @@ function App() {
     setPokemon(clearArray)
     getDataPokemon(url)
   }
+
+  console.log(pokemon)
 
   useEffect(() => {
     getDataPokemon("https://pokeapi.co/api/v2/pokemon")
@@ -92,20 +106,22 @@ function App() {
                 key={index}
                 style={{cursor:"pointer"}}
                 className={`attribute ${val.name}-color`}
-                onClick={() => filterPokemonByType(val.url)}>
-                {val.name}
+                onClick={() => filterPokemonByType(val.url)}
+              >
+              {val.name}
               </div>
             )
           }
         </div>
         <div className="wrapper-list-pokemon">
-          { !loading ?
+          {
+            !loading ?
               pokemon.map((data, index) =>
-              <Card
-                data={data}
-                index={index}
-              />
-          )
+                <Card
+                  data={data}
+                  index={index}
+                />
+              )
           :
           <Loader
             type={"bars"}

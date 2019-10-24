@@ -34,8 +34,9 @@ body {
 .card {
   cursor: pointer;
   display: inline-block;
-  width: 200px;
-  max-width: 200px;
+  min-width: 300px;
+  width: 300px;
+  max-width: 300px;
   border-radius: 4px;
   border: 1px solid lightgray;
   margin: 6px;
@@ -51,12 +52,13 @@ body {
   box-shadow: 3px 6px 24px -6px rgba(0,0,0,0.75);
 }
 .card img {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   object-fit: contain;
   background-color: #F5F5F5;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+  transition: 0.5s;
 }
 .title-card {
   margin: 0;
@@ -221,4 +223,22 @@ body {
 }
 .pokemon-id {
   margin: 2px;
+}
+.detail-pokemon {
+  position: absolute;
+  top: 0px;
+  padding: 18px;
+  width: 88%;
+  height: 300px;
+}
+.wrapper-stats p {
+  margin: 0;
+  padding-left: 10px;
+}
+.wrapper-stats h4 {
+  margin: 0;
+  color: #CC0000;
+}
+.wrapper-stats {
+  display: inline-block;
 }
