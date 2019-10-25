@@ -3,7 +3,6 @@ import PokeBallIcon from '../images/poke-ball-icon.png';
 
 
 function Card(props) {
-
   const [seeDetail, setSeeDetail] = useState(false)
 
   return (

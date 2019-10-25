@@ -6,20 +6,17 @@ import Card from './components/Card';
 import Loader from 'react-loading';
 
 function App() {
-
   const [listType, setListType] = useState([])
   const [pokemon, setPokemon] = useState([])
   const [loading, setLoading] = useState(true)
   const [nextData, setNextData] = useState("")
   const [scrollPosition, setScroll] = useState(0)
-  const [currentHeight, setHeight] = useState(0)
 
   const getDataPokemon = async (url) => {
     await axios.get(url)
       .then(res => {
         let data = res.data.results ? res.data.results : res.data.pokemon
         let nextUrl = res.data.next ? res.data.next : ""
-        alert('masuk')
         setNextData(nextUrl)
         data.map(data => setDataPokemon(data.pokemon ? data.pokemon.name : data.name, data.url))
     })
@@ -82,10 +79,9 @@ function App() {
   const getDataOnScroll = (scrollHeight, clientHeight, scrollTop) => {
     let currentScroll = scrollHeight - clientHeight
     setScroll(scrollTop)
-    setHeight(currentScroll)
-    // if((currentScroll === scrollTop) && nextData){
-    //   getDataPokemon(nextData)
-    // }
+    if((currentScroll === scrollTop) && nextData){
+      getDataPokemon(nextData)
+    }
   }
 
   const scrollToTop = () => {
@@ -96,12 +92,6 @@ function App() {
     getDataPokemon("https://pokeapi.co/api/v2/pokemon")
     getDataType()
   },[])
-
-  useEffect(() => {
-    if((currentHeight === scrollPosition) && nextData){
-      getDataPokemon(nextData)
-    }
-  },[scrollPosition])
 
   return (
     <div className="App" id="App" onScroll={(e) => getDataOnScroll(e.currentTarget.scrollHeight, e.currentTarget.clientHeight, e.currentTarget.scrollTop)}>
