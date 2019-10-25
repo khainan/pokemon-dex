@@ -3,7 +3,6 @@ import LogoPokemon from './images/logo-pokemon.png';
 import axios from 'axios';
 import './App.css';
 import Card from './components/Card';
-import {CircleArrow as ScrollUpButton} from 'react-scroll-up-button';
 import Loader from 'react-loading';
 
 function App() {
@@ -92,16 +91,6 @@ function App() {
 
   return (
     <div className="App" onScroll={(e) => getDataOnScroll(e.currentTarget.scrollHeight, e.currentTarget.clientHeight, e.currentTarget.scrollTop)}>
-      <ScrollUpButton
-          StopPosition={0}
-          ShowAtPosition={150}
-          EasingType='easeOutCubic'
-          AnimationDuration={500}
-          ContainerClassName='App'
-          TransitionClassName='ScrollUpButton__Toggled'
-          style={{zIndex:"10"}}
-          ToggledStyle={{}}
-        />
       <div className="header">
         <img src={LogoPokemon} />
       </div>
