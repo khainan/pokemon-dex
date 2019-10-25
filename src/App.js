@@ -19,7 +19,7 @@ function App() {
       .then(res => {
         let data = res.data.results ? res.data.results : res.data.pokemon
         let nextUrl = res.data.next ? res.data.next : ""
-
+        alert('masuk')
         setNextData(nextUrl)
         data.map(data => setDataPokemon(data.pokemon ? data.pokemon.name : data.name, data.url))
     })
