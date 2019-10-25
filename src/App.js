@@ -11,6 +11,7 @@ function App() {
   const [pokemon, setPokemon] = useState([])
   const [loading, setLoading] = useState(true)
   const [nextData, setNextData] = useState("")
+  const [scrollPosition, setScroll] = useState(0)
 
   const getDataPokemon = async (url) => {
     await axios.get(url)
@@ -78,10 +79,16 @@ function App() {
   }
 
   const getDataOnScroll = (scrollHeight, clientHeight, scrollTop) => {
+    setScroll(scrollTop)
+
     let currentScroll = scrollHeight - clientHeight
     if((currentScroll === scrollTop) && nextData){
       getDataPokemon(nextData)
     }
+  }
+
+  const scrollToTop = () => {
+    document.getElementById('App').scrollTo(0, 0)
   }
 
   useEffect(() => {
@@ -90,7 +97,7 @@ function App() {
   },[])
 
   return (
-    <div className="App" onScroll={(e) => getDataOnScroll(e.currentTarget.scrollHeight, e.currentTarget.clientHeight, e.currentTarget.scrollTop)}>
+    <div className="App" id="App" onScroll={(e) => getDataOnScroll(e.currentTarget.scrollHeight, e.currentTarget.clientHeight, e.currentTarget.scrollTop)}>
       <div className="header">
         <img src={LogoPokemon} />
       </div>
@@ -128,6 +135,7 @@ function App() {
           />
           }
         </div>
+        <button className="button-scroll-up" onClick={() => scrollToTop()} style={scrollPosition > 150 ? {opacity:"1"} : {opacity:"0"}}>Scroll Up</button>
       </div>
     </div>
   );
