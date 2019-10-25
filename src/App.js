@@ -100,6 +100,7 @@ function App() {
     <div className="App" id="App" onScroll={(e) => getDataOnScroll(e.currentTarget.scrollHeight, e.currentTarget.clientHeight, e.currentTarget.scrollTop)}>
       <div className="header">
         <img src={LogoPokemon} />
+        <p>{scrollPosition}</p>
       </div>
       <div className="main-body">
         <p style={{margin:"0"}}>Filter by:</p>
