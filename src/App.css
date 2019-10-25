@@ -19,7 +19,7 @@ body {
   width: 100%;
   background-color: #F5F5F5;
   position: fixed;
-  top: 0;
+  top: -2px;
   display: flex;
   align-items: center;
   justify-content: center;
