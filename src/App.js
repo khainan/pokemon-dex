@@ -12,7 +12,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [nextData, setNextData] = useState("")
   const [scrollPosition, setScroll] = useState(0)
-  const [clientHeight, setClientHeight] = useState(0)
+  const [currentHeight, setHeight] = useState(0)
 
   const getDataPokemon = async (url) => {
     await axios.get(url)
@@ -80,13 +80,12 @@ function App() {
   }
 
   const getDataOnScroll = (scrollHeight, clientHeight, scrollTop) => {
-    setScroll(scrollTop)
-
     let currentScroll = scrollHeight - clientHeight
-    setClientHeight(currentScroll)
-    if((currentScroll === scrollTop) && nextData){
-      getDataPokemon(nextData)
-    }
+    setScroll(scrollTop)
+    setHeight(currentScroll)
+    // if((currentScroll === scrollTop) && nextData){
+    //   getDataPokemon(nextData)
+    // }
   }
 
   const scrollToTop = () => {
@@ -98,14 +97,16 @@ function App() {
     getDataType()
   },[])
 
+  useEffect(() => {
+    if((currentHeight === scrollPosition) && nextData){
+      getDataPokemon(nextData)
+    }
+  },[scrollPosition])
+
   return (
     <div className="App" id="App" onScroll={(e) => getDataOnScroll(e.currentTarget.scrollHeight, e.currentTarget.clientHeight, e.currentTarget.scrollTop)}>
       <div className="header">
         <img src={LogoPokemon} />
-        <p>{parseInt(scrollPosition)}</p>
-        <p style={{color:"red"}}>{parseInt(clientHeight)}</p>
-        <p style={{color:"blue"}}>{clientHeight}</p>
-        <p style={{color:"green"}}>{nextData ? "true" : "false"}</p>
       </div>
       <div className="main-body">
         <p style={{margin:"0"}}>Filter by:</p>
