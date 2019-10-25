@@ -105,6 +105,7 @@ function App() {
         <p>{parseInt(scrollPosition)}</p>
         <p style={{color:"red"}}>{parseInt(clientHeight)}</p>
         <p style={{color:"blue"}}>{clientHeight}</p>
+        <p style={{color:"green"}}>{nextData ? "true" : "false"}</p>
       </div>
       <div className="main-body">
         <p style={{margin:"0"}}>Filter by:</p>
