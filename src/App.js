@@ -11,6 +11,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [nextData, setNextData] = useState("")
   const [scrollPosition, setScroll] = useState(0)
+  const [currentHeight, setHeight] = useState(0)
 
   const getDataPokemon = async (url) => {
     await axios.get(url)
@@ -78,9 +79,12 @@ function App() {
 
   const getDataOnScroll = (scrollHeight, clientHeight, scrollTop) => {
     let currentScroll = scrollHeight - clientHeight
-    setScroll(scrollTop)
-    if((currentScroll === scrollTop) && nextData){
-      getDataPokemon(nextData)
+    setHeight(currentScroll - 20)
+    if(currentHeight > 200){
+      setScroll(scrollTop)
+      if((scrollTop > currentHeight) && nextData){
+        getDataPokemon(nextData)
+      }
     }
   }
 
